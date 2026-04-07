@@ -4,7 +4,7 @@ import TodoItems from "./TodoItems";
 
 const Todo = () => {
     const inputRef = useRef();
-    const [todoList, setTodoList] = useState([]);
+    const [todoList, setTodoList] = useState(localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : []);
 
     const addTodo = ()=>{
         const inputText = inputRef.current.value.trim();
@@ -40,7 +40,9 @@ const Todo = () => {
         })
     }
 
-    useEffect(()=>{console.log(todoList)},[todoList])
+    useEffect(()=>{
+        localStorage.setItem('todos',JSON.stringify(todoList))
+    },[todoList])
 
     return (
         <div className="bg-white place-self-center w-11/12 max-w-md flex flex-col min-h-[550px] rounded-xl p-7">
