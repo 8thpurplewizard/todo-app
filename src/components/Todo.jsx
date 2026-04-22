@@ -5,6 +5,8 @@ import TodoItems from "./TodoItems";
 const Todo = () => {
     const inputRef = useRef();
     const [todoList, setTodoList] = useState(localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : []);
+    const [editingId, setEditingId] = useState(null);
+    const [editText, setEditText] = useState("");
 
     const addTodo = ()=>{
         const inputText = inputRef.current.value.trim();
@@ -40,6 +42,18 @@ const Todo = () => {
         })
     }
 
+    const editTodo = (id, editText) => {        
+        console.log('eres');
+        
+        setTodoList((prevTodos)=>{
+            if (!Array.isArray(prevTodos)) return prevTodos || [];
+
+            return prevTodos.map((todo) =>
+            todo.id === id ? { ...todo, text: editText } : todo
+            );
+        });
+    };
+
     useEffect(()=>{
         localStorage.setItem('todos',JSON.stringify(todoList))
     },[todoList])
@@ -58,7 +72,7 @@ const Todo = () => {
             </div>
             {/*list*/}
             <div>
-                {todoList.map((item, index)=>{
+                {todoList.map((item)=>{
                     return <TodoItems 
                     key={item.id}
                     id={item.id}
@@ -66,6 +80,11 @@ const Todo = () => {
                     isComplete={item.isComplete}
                     deleteTodo={deleteTodo}
                     toggleTodo={toggleTodo}
+                    editTodo={editTodo}
+                    editText={editText}
+                    setEditText={setEditText}
+                    editingId={editingId}
+                    setEditingId={setEditingId}
                     />
                 })}
             </div>
