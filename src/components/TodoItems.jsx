@@ -8,7 +8,7 @@ const TodoItems = ({text, id, isComplete,
     deleteTodo, toggleTodo, editTodo, editingId, setEditingId, editText, setEditText}) => {
     return (
         <div className='flex items-center my-3 gap-2'>
-            <div className='flex flex-1 items-center'>
+            <div className='flex flex-1 items-center overflow-hidden'>
                 <img onClick={() => toggleTodo(id)} src={isComplete? tick : not_tick} className='w-7 cursor-pointer'/>
                 
                 {editingId === id ? (
