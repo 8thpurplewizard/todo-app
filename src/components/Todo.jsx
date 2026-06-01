@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Reorder } from "motion/react";
 import todo_icon from "../assets/todo_icon.png";
 import TodoItems from "./TodoItems";
 
@@ -77,21 +78,36 @@ const Todo = () => {
             </div>
             {/*list*/}
             <div>
+                <Reorder.Group 
+                    axis="y" 
+                    values={todoList} 
+                    onReorder={setTodoList}
+                    className="flex flex-col"
+                >
                 {todoList.map((item)=>{
-                    return <TodoItems 
-                    key={item.id}
-                    id={item.id}
-                    text={item.text}
-                    isComplete={item.isComplete}
-                    deleteTodo={deleteTodo}
-                    toggleTodo={toggleTodo}
-                    editTodo={editTodo}
-                    editText={editText}
-                    setEditText={setEditText}
-                    editingId={editingId}
-                    setEditingId={setEditingId}
-                    />
+                    return (
+                        <Reorder.Item 
+                            key={item.id} 
+                            value={item}
+                            className="relative"
+                        >
+                        <TodoItems 
+                            key={item.id}
+                            id={item.id}
+                            text={item.text}
+                            isComplete={item.isComplete}
+                            deleteTodo={deleteTodo}
+                            toggleTodo={toggleTodo}
+                            editTodo={editTodo}
+                            editText={editText}
+                            setEditText={setEditText}
+                            editingId={editingId}
+                            setEditingId={setEditingId}
+                        />
+                        </Reorder.Item>
+                    ) 
                 })}
+                </Reorder.Group>
             </div>
         </div>
     );
