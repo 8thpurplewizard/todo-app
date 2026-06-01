@@ -10,7 +10,7 @@ const Todo = () => {
 
     const addTodo = ()=>{
         const inputText = inputRef.current.value.trim();
-
+        
         if(inputText === '') {
             return null;
         }
@@ -67,7 +67,12 @@ const Todo = () => {
             </div>
             {/*input*/}
             <div className="flex item-center my-7 bg-gray-200 rounded-full">
-                <input ref={inputRef} className="bg-transparent border-0 outline-none flex-1 h-12 pl-6 pr-2 placeholder: text-slate-600" type="text" placeholder="Add your task"/>
+                <input ref={inputRef} className="bg-transparent border-0 outline-none flex-1 h-12 pl-6 pr-2 placeholder: text-slate-600" type="text" placeholder="Add your tasks"
+                onKeyUp={ (e) => {
+                    if(e.key === "Enter") addTodo()
+                    else if(e.key === "Escape") inputRef.current.value = ''
+                    }
+                }/>
                 <button onClick={addTodo} className="border-none rounded-full bg-orange-600 w-12 h-12 text-white text-lg font-bold cursor-pointer">+</button>
             </div>
             {/*list*/}
