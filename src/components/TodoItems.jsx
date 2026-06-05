@@ -7,7 +7,7 @@ import edit_icon from '../assets/edit.png'
 const TodoItems = ({text, id, isComplete, 
     deleteTodo, toggleTodo, editTodo, editingId, setEditingId, editText, setEditText}) => {
     return (
-        <div className='flex items-center my-3 gap-2'>
+        <div className='flex items-center my-3 gap-2 pr-3'>
             <div className='flex flex-1 items-center overflow-hidden'>
                 <img onClick={() => toggleTodo(id)} src={isComplete? tick : not_tick} className='w-7 cursor-pointer'/>
                 
@@ -36,7 +36,6 @@ const TodoItems = ({text, id, isComplete,
                     }
                 }
                 autoFocus
-
                 />) 
                 : (
                 <p className={`text-slate-700 ml-4 text-[17px] decoration-slate-500 ${isComplete ? 'line-through' : ''}`}>

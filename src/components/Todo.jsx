@@ -82,31 +82,31 @@ const Todo = () => {
                     axis="y" 
                     values={todoList} 
                     onReorder={setTodoList}
-                    className="flex flex-col"
+                    className="flex flex-col scroll-smooth md:scroll-auto max-h-[300px] overflow-y-scroll"
                 >
-                {todoList.map((item)=>{
-                    return (
-                        <Reorder.Item 
-                            key={item.id} 
-                            value={item}
-                            className="relative"
-                        >
-                        <TodoItems 
-                            key={item.id}
-                            id={item.id}
-                            text={item.text}
-                            isComplete={item.isComplete}
-                            deleteTodo={deleteTodo}
-                            toggleTodo={toggleTodo}
-                            editTodo={editTodo}
-                            editText={editText}
-                            setEditText={setEditText}
-                            editingId={editingId}
-                            setEditingId={setEditingId}
-                        />
-                        </Reorder.Item>
-                    ) 
-                })}
+                    {todoList.map((item)=>{
+                        return (
+                            <Reorder.Item 
+                                key={item.id} 
+                                value={item}
+                                className="relative"
+                            >
+                            <TodoItems 
+                                key={item.id}
+                                id={item.id}
+                                text={item.text}
+                                isComplete={item.isComplete}
+                                deleteTodo={deleteTodo}
+                                toggleTodo={toggleTodo}
+                                editTodo={editTodo}
+                                editText={editText}
+                                setEditText={setEditText}
+                                editingId={editingId}
+                                setEditingId={setEditingId}
+                            />
+                            </Reorder.Item>
+                        ) 
+                    })}
                 </Reorder.Group>
             </div>
         </div>
